@@ -1,8 +1,13 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import kitsu from './public/kitsu-svgrepo-com.svg';
 
 // const montserrat = Montserrat({ weight: "400","700" })
+import {
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons"
+
 
 const Home = () => {
   return (
@@ -17,10 +22,12 @@ const Home = () => {
         <header className="flex justify-center h-12 pt-2">
           <ul className="flex justify-between w-1/4">
             <li>
-              <a href="" className='text-bold'>MAL</a>
+              <a href="">MAL</a>
             </li>
             <li>
-              <a href="">kitsu</a>
+              <a href="" className=' fill-white'>
+                <Image src='/images/kitsu-svgrepo-com.svg' alt='kitsu' height={32} width={32} priority></Image>
+              </a>
             </li>
             <li>
               <a href="">Anilist</a>
@@ -28,13 +35,13 @@ const Home = () => {
             <li>Dark Mode</li>
           </ul>
         </header>
-        <div className="flex justify-center my-16 text-black">
+        <div className="flex justify-center my-16 text-white">
           <input
             type="text"
-            placeholder="text"
-            className="border-2 border-black rounded p-2 block w-1/5"
+            placeholder="Search"
+            className="border-2 border-white rounded-xl px-4 block bg-zinc-800 w-1/3"
           />
-          <button className='text-white ml-2'>Search</button>
+          <button className='text-white ml-4 bg-zinc-800 hover:bg-zinc-700  p-3 rounded-xl hover:-translate-y-1 transition'>Search</button>
         </div>
 
       <article className="grid grid-cols-article gap-6 mx-24 justify-center">
@@ -47,12 +54,12 @@ const Home = () => {
               width={270}
               className="rounded-xl grayscale hover:grayscale-0 hover:scale-105 transition"
             ></Image>
-          <h1 className='text-bold text-lg w-5/6 hover:underline underline-offset-2 decoration-2 decoration-sky-500 cursor-pointer transition'>Isekai de Cheat Skill wo Te ni Shita Ore wa, Genjitsu ...</h1>
-          <ul className="flex justify-between w-3/4 text-black ">
-              <li className="bg-white rounded-lg h-[40px] w-[50px]  text-bold flex justify-center items-center hover:scale-105 transition">1d</li>
-              <li className="bg-white h-[40px] w-[50px] rounded-lg text-bold flex justify-center items-center hover:scale-105 transition">14h</li>
-              <li className="bg-white h-[40px] w-[50px] rounded-lg  text-bold flex justify-center items-center hover:scale-105 transition">26m</li>
-              <li className="bg-white h-[40px] w-[50px] rounded-lg  text-bold flex justify-center items-center hover:scale-105 transition">4s</li>
+          <h1 className='text-lg w-5/6 hover:underline underline-offset-2 decoration-2 decoration-sky-500 cursor-pointer transition'>Isekai de Cheat Skill wo Te ni Shita Ore wa, Genjitsu ...</h1>
+          <ul className="flex justify-between w-5/6 text-black ">
+              <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">1d</li>
+              <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">14h</li>
+              <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">26m</li>
+              <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">4s</li>
             </ul>
           </div>
           
