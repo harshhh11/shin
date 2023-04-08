@@ -41,7 +41,7 @@ const getAnime = async () => {
       url: show.url,
       images: { jpg: show.images.jpg.large_image_url, webp: show.images.webp.large_image_url },
       trailer: { url: show.trailer.url, embedUrl : show.trailer.embed_url },
-      title: show.title,
+      title: show.title, 
       season: show.season,
       year: show.year,
       broadcast: {

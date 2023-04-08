@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         'article': 'repeat(auto-fit, 300px)',
-      }
+      },
     },
   },
   plugins: [],
