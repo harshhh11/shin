@@ -1,6 +1,7 @@
 import { Anime } from '../lib/types';
 import Image from 'next/image';
 import Countdown from './Countdown';
+import YouTube from 'react-youtube';
 
 const AnimeCard = ({ animeList }: { animeList: Anime[] }) => {
   return (
@@ -19,26 +20,19 @@ const AnimeCard = ({ animeList }: { animeList: Anime[] }) => {
                 width={270}
                 className="rounded-xl grayscale hover:grayscale-0 hover:scale-105 transition"
               ></Image>
+              {/* <YouTube videoId={anime.trailer.youtube_id} className='z-20'/> */}
               <h1 className="text-lg w-5/6 hover:underline underline-offset-2 decoration-2 cursor-pointer transition">
-                {anime.title.length > 50
-                  ? anime.title.slice(0, 50) + '...'
-                  : anime.title}
+                {anime.title_english && anime.title_english.length > 55
+                  ? anime.title_english.slice(0, 55) + '...'
+                  : anime.title_english ||
+                    anime.title}
               </h1>
-              <Countdown broadcast={ { day: anime.broadcast.day, time: anime.broadcast.time } }/>
-              {/* <ul className="flex justify-between w-5/6 text-black ">
-                <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
-                  1d{anime.broadcast.day}
-                </li>
-                <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
-                  14h{anime.broadcast.time}
-                </li>
-                <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
-                  26m
-                </li>
-                <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
-                  4s
-                </li>
-              </ul> */}
+              <Countdown
+                broadcast={{
+                  day: anime.broadcast.day,
+                  time: anime.broadcast.time,
+                }}
+              />
             </div>
           </section>
         );

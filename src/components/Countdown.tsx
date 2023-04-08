@@ -59,17 +59,17 @@ const Countdown = ({
   });
 
   return (
-    <ul className="flex justify-between w-5/6 text-black ">
-      <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
+    <ul className="flex justify-between w-5/6 text-white">
+      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
         {day}d
       </li>
-      <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
+      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
         {hour}h
       </li>
-      <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
+      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
         {minutes}m
       </li>
-      <li className="bg-white h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
+      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
         {seconds}s
       </li>
     </ul>

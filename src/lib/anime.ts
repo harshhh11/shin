@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { Anime } from './types';
 
-interface Anime {
+interface AnimeResponse {
   mal_id: number;
   url: string;
   images: {
@@ -16,6 +17,7 @@ interface Anime {
     };
   };
   trailer: {
+    youtube_id: string;
     url: string;
     embed_url: string;
   };
@@ -33,15 +35,17 @@ interface Anime {
   };
 }
 
-const getAnime = async () => {
+const getAnime = async (): Promise<Anime[]> => {
   const res = await axios.get('https://api.jikan.moe/v4/seasons/now');
   const anime = res.data.data; 
-  const animeList = anime.map((show: Anime) => {
+  const animeList = anime.map((show: AnimeResponse) => {
     return {
       url: show.url,
       images: { jpg: show.images.jpg.large_image_url, webp: show.images.webp.large_image_url },
       trailer: { url: show.trailer.url, embedUrl : show.trailer.embed_url },
-      title: show.title, 
+      title: show.title,
+      title_english: show.title_english,
+      youtube_id: show.trailer.youtube_id, 
       season: show.season,
       year: show.year,
       broadcast: {

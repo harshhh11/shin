@@ -1,19 +1,20 @@
 export type Anime = {
   url: string;
   images: {
-      jpg: string;
-      webp: string;
+    jpg: string;
+    webp: string;
   };
   trailer: {
-      url: string;
-      embedUrl: string;
+    youtube_id: string;
+    url: string;
+    embedUrl: string;
   };
   title: string;
+  title_english?: string;
   season: string;
   year: number;
   broadcast: {
-      day: string;
-      time: string;
+    day: string;
+    time: string;
   };
-}; 
-
+};
