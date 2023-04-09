@@ -3,6 +3,7 @@ import getAnime from '../lib/anime';
 import AnimeCard from '../components/AnimeCard';
 import { Anime } from '~/lib/types';
 import Header from '../components/Header';
+import Search from '../components/Search';
 
 export async function getStaticProps() {
   const animeList = await getAnime();
@@ -23,20 +24,15 @@ const Home = ({ animeList }: { animeList: Anime[] }) => {
           <link rel="icon" href="/vercel.svg" />
         </Head>
       </Head>
-      <main className='text-bold'>
-        <Header />
-        <div className="flex justify-center my-16 text-white">
-          <input
-          disabled
-            type="text"
-            placeholder="Search"
-            className="border-2 border-white rounded-xl px-6 block bg-zinc-800 w-1/3"
-          />
-          <button className="text-white ml-6 bg-zinc-800 hover:bg-zinc-700  p-3 rounded-xl transition">
-            Search
-          </button>
-        </div>
-        <AnimeCard animeList={animeList}/>
+      <main>
+        <Header season={animeList[0].season} year={animeList[0].year} />
+        <Search />
+        <article className="grid grid-cols-article gap-6 mx-24 justify-center">
+          {animeList.map((anime) => {
+            return (
+              <AnimeCard anime={anime} key={anime.title}/>
+            )})}
+            </article>
       </main>
     </>
   );

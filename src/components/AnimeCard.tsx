@@ -1,12 +1,9 @@
-import { Anime } from '../lib/types';
 import Image from 'next/image';
 import Countdown from './Countdown';
+import { Anime } from '../lib/types';
 
-const AnimeCard = ({ animeList }: { animeList: Anime[] }) => {
+const AnimeCard = ({ anime }: { anime: Anime }) => {
   return (
-    <article className="grid grid-cols-article gap-6 mx-24 justify-center">
-      {animeList.map((anime) => {
-        return (
           <section
             className="bg-zinc-800 rounded-xl text-white h-[540px] py-4 text-center"
             key={anime.title}
@@ -35,9 +32,6 @@ const AnimeCard = ({ animeList }: { animeList: Anime[] }) => {
             </div>
           </section>
         );
-      })}
-    </article>
-  );
 };
 
 export default AnimeCard;

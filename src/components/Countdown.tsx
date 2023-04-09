@@ -6,7 +6,12 @@ const Countdown = ({
 }: {
   broadcast: { day: string; time: string };
 }) => {
-  const [countDown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [countDown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   const dayIndex = [
     'Sundays',
@@ -18,12 +23,9 @@ const Countdown = ({
     'Saturdays',
   ].indexOf(broadcast.day);
 
-  const getCountdown = (
-    day: number,
-    time: string
-  ): CountdownProps => {
+  const getCountdown = (dayIndex: number, time: string): CountdownProps => {
     const now = jstDate();
-    const nextDate = nextDay(day);
+    const nextDate = nextDay(dayIndex);
     nextDate.setHours(Number(time.slice(0, 2)), Number(time.slice(3)), 0);
 
     if (nextDate < now) {
@@ -47,7 +49,7 @@ const Countdown = ({
   useEffect(() => {
     const interval = setInterval(() => {
       const countdown = getCountdown(dayIndex, broadcast.time);
-      setCountdown(countdown)
+      setCountdown(countdown);
     }, 1000);
 
     return () => clearInterval(interval);
@@ -81,7 +83,7 @@ const jstDate = (): Date => {
 
 const nextDay = (index: number): Date => {
   const now = jstDate();
-  now.setDate(now.getDate() + (index + ((7 - now.getDay()) % 7)));
+  now.setDate(now.getDate() + (index + (7 - now.getDay())) % 7);
   return now;
 };
 
