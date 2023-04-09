@@ -1,7 +1,6 @@
 import { Anime } from '../lib/types';
 import Image from 'next/image';
 import Countdown from './Countdown';
-import YouTube from 'react-youtube';
 
 const AnimeCard = ({ animeList }: { animeList: Anime[] }) => {
   return (
