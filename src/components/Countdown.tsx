@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
+import { CountdownProps } from '../lib/types';
 
 const Countdown = ({
   broadcast,
 }: {
   broadcast: { day: string; time: string };
 }) => {
-  const [day, setDay] = useState<number>(0);
-  const [hour, setHour] = useState<number>(0);
-  const [minutes, setMinutes] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(0);
+  const [countDown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   const dayIndex = [
     'Sundays',
@@ -23,7 +21,7 @@ const Countdown = ({
   const getCountdown = (
     day: number,
     time: string
-  ): { days: number; hours: number; minutes: number; seconds: number } => {
+  ): CountdownProps => {
     const now = jstDate();
     const nextDate = nextDay(day);
     nextDate.setHours(Number(time.slice(0, 2)), Number(time.slice(3)), 0);
@@ -48,11 +46,8 @@ const Countdown = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const coutdown = getCountdown(dayIndex, broadcast.time);
-      setDay(coutdown.days);
-      setHour(coutdown.hours);
-      setMinutes(coutdown.minutes);
-      setSeconds(coutdown.seconds);
+      const countdown = getCountdown(dayIndex, broadcast.time);
+      setCountdown(countdown)
     }, 1000);
 
     return () => clearInterval(interval);
@@ -61,16 +56,16 @@ const Countdown = ({
   return (
     <ul className="flex justify-between w-5/6 text-white">
       <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
-        {day}d
+        {countDown.days}d
       </li>
       <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
-        {hour}h
+        {countDown.hours}h
       </li>
       <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
-        {minutes}m
+        {countDown.minutes}m
       </li>
       <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
-        {seconds}s
+        {countDown.seconds}s
       </li>
     </ul>
   );

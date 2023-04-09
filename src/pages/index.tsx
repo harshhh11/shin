@@ -1,16 +1,8 @@
 import Head from 'next/head';
 import getAnime from '../lib/anime';
 import AnimeCard from '../components/AnimeCard';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Anime } from '~/lib/types';
 import Header from '../components/Header';
-// import kitsu from './public/kitsu-svgrepo-com.svg';
-
-// const montserrat = Montserrat({ weight: "400","700" })
-// import {
-//   faLightbulb,
-//   faSun
-// } from "@fortawesome/free-solid-svg-icons"
 
 export async function getStaticProps() {
   const animeList = await getAnime();
