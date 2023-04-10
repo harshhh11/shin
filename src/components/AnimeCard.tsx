@@ -14,21 +14,26 @@ const AnimeCard = ({ anime }: { anime: Anime }) => {
                 alt={anime.title}
                 height={200}
                 width={270}
-                className="rounded-xl grayscale hover:grayscale-0 hover:scale-105 transition"
+                className="rounded-xl hover:scale-105 transition"
               ></Image>
-              {/* <YouTube videoId={anime.trailer.youtube_id} className='z-20'/> */}
               <h1 className="text-lg w-5/6 hover:underline underline-offset-2 decoration-2 cursor-pointer transition">
                 {anime.title_english && anime.title_english.length > 55
                   ? anime.title_english.slice(0, 55) + '...'
                   : anime.title_english ||
                     anime.title}
               </h1>
-              <Countdown
+              {(anime.broadcast.day && anime.broadcast.time) && <Countdown
                 broadcast={{
                   day: anime.broadcast.day,
                   time: anime.broadcast.time,
                 }}
-              />
+              />}
+              {/* <Countdown
+                broadcast={{
+                  day: anime.broadcast.day,
+                  time: anime.broadcast.time,
+                }}
+              /> */}
             </div>
           </section>
         );

@@ -1,9 +1,10 @@
-import '~/styles/globals.css'
-import type { AppProps } from 'next/app'
+import '~/styles/globals.css';
+import type { AppProps } from 'next/app';
+
 import localFont from 'next/font/local';
 
 const satoshi = localFont({
-  src: '../../public/fonts/Satoshi-Bold.woff2' 
+  src: '../../public/fonts/Satoshi-Bold.woff2',
 });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -11,5 +12,5 @@ export default function App({ Component, pageProps }: AppProps) {
     <main className={satoshi.className}>
       <Component {...pageProps} />
     </main>
-  )
+  );
 }

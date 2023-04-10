@@ -1,19 +1,28 @@
 import Head from 'next/head';
-import getAnime from '../lib/anime';
-import AnimeCard from '../components/AnimeCard';
+import Search from '~/components/Search';
+import Header from '~/components/Header';
+import AnimeCard from '~/components/AnimeCard';
+import getAnime from '~/lib/anime';
 import { Anime } from '~/lib/types';
-import Header from '../components/Header';
-import Search from '../components/Search';
 
-export async function getStaticProps() {
-  const animeList = await getAnime();
-  return {
-    props: { animeList },
-    revalidate: 3600000,
-  };
-}
+import { useState } from 'react';
 
 const Home = ({ animeList }: { animeList: Anime[] }) => {
+
+  const [q, setQ] = useState<string>('');
+  const [searchParams] = useState<(keyof Anime)[]>(['title', 'title_english']);
+
+  const search = () => {
+    return animeList.filter((anime: Anime) => {
+      return searchParams.some((property) => {
+        return anime[property]
+          ? anime[property]!.toString().toLowerCase().indexOf(q.toLowerCase()) >
+              -1
+          : 0;
+      });
+    });
+  };
+
   return (
     <>
       <Head>
@@ -24,18 +33,30 @@ const Home = ({ animeList }: { animeList: Anime[] }) => {
           <link rel="icon" href="/vercel.svg" />
         </Head>
       </Head>
+
       <main>
         <Header season={animeList[0].season} year={animeList[0].year} />
-        <Search />
+        
+        <Search q={q} setQ={setQ} />
         <article className="grid grid-cols-article gap-6 mx-24 justify-center">
-          {animeList.map((anime) => {
-            return (
-              <AnimeCard anime={anime} key={anime.title}/>
-            )})}
-            </article>
+        {q && (search().map(anime => {
+          return <AnimeCard anime={anime} key={anime.title} /> 
+        })) }
+          {!q && animeList.map((anime) => {
+            return <AnimeCard anime={anime} key={anime.title} />;
+          })}
+        </article>
       </main>
     </>
   );
 };
+
+export async function getStaticProps() {
+  const animeList = await getAnime();
+  return {
+    props: { animeList },
+    revalidate: 3600000,
+  };
+}
 
 export default Home;
