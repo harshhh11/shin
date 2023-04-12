@@ -6,7 +6,6 @@ const Countdown = ({
 }: {
   broadcast: { day: string; time: string };
 }) => {
-  
   const [countDown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -48,13 +47,15 @@ const Countdown = ({
   };
 
   useEffect(() => {
+    const countdown = getCountdown(dayIndex, broadcast.time);
+    setCountdown(countdown);
     const interval = setInterval(() => {
       const countdown = getCountdown(dayIndex, broadcast.time);
       setCountdown(countdown);
     }, 1000);
 
     return () => clearInterval(interval);
-  });
+  }, [dayIndex, broadcast.time]);
 
   return (
     <ul className="flex justify-between w-5/6 text-white">
@@ -84,7 +85,7 @@ const jstDate = (): Date => {
 
 const nextDay = (index: number): Date => {
   const now = jstDate();
-  now.setDate(now.getDate() + (index + (7 - now.getDay())) % 7);
+  now.setDate(now.getDate() + ((index + (7 - now.getDay())) % 7));
   return now;
 };
 

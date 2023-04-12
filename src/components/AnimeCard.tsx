@@ -28,12 +28,6 @@ const AnimeCard = ({ anime }: { anime: Anime }) => {
                   time: anime.broadcast.time,
                 }}
               />}
-              {/* <Countdown
-                broadcast={{
-                  day: anime.broadcast.day,
-                  time: anime.broadcast.time,
-                }}
-              /> */}
             </div>
           </section>
         );

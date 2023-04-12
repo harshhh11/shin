@@ -33,6 +33,14 @@ interface AnimeResponse {
     timezone: string;
     string: string;
   };
+  studios: [
+    {
+      mal_id: number;
+      name: string;
+      type: string;
+      url: string;
+    }
+  ]
 }
 
 const getAnime = async (): Promise<Anime[]> => {
@@ -51,10 +59,10 @@ const getAnime = async (): Promise<Anime[]> => {
       broadcast: {
         day: show.broadcast.day,
         time: show.broadcast.time
-      }
+      },
+      studio: show.studios[0].name
     }
   })
-
   return animeList;
 }
 

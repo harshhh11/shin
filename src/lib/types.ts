@@ -17,6 +17,7 @@ export type Anime = {
     day: string;
     time: string;
   };
+  studio?: string;
 };
 
 export type CountdownProps = {
