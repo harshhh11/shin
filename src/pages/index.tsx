@@ -10,6 +10,7 @@ import { useState } from 'react';
 const Home = ({ animeList }: { animeList: Anime[] }) => {
   const [q, setQ] = useState<string>('');
   const [searchParams] = useState<(keyof Anime)[]>(['title', 'title_english', 'studio']);
+  const [selectedAnimeIds, setSeletecdAnimeIds] = useState<number[]>([]);
 
   const search = () => {
     return animeList.filter((anime: Anime) => {
@@ -39,11 +40,11 @@ const Home = ({ animeList }: { animeList: Anime[] }) => {
         <article className="grid grid-cols-article gap-6 mx-24 justify-center">
           {q &&
             search().map((anime) => {
-              return <AnimeCard anime={anime} key={anime.title} />;
+              return <AnimeCard anime={anime} key={anime.mal_id} />;
             })}
           {!q &&
             animeList.map((anime) => {
-              return <AnimeCard anime={anime} key={anime.title} />;
+              return <AnimeCard anime={anime} key={anime.mal_id} />;
             })}
         </article>
       </main>

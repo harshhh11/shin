@@ -1,6 +1,6 @@
 const Search = ({ q, setQ }: { q: string, setQ: (input: string) => void }) => {
   return (
-    <div className="flex justify-center my-16 text-white">
+    <div className="flex justify-center my-12 text-white">
       <input
         type="text"
         placeholder="Search for anime or studio here..."

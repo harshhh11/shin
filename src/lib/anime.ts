@@ -48,6 +48,7 @@ const getAnime = async (): Promise<Anime[]> => {
   const anime = res.data.data; 
   const animeList = anime.map((show: AnimeResponse) => {
     return {
+      mal_id: show.mal_id,
       url: show.url,
       images: { jpg: show.images.jpg.large_image_url, webp: show.images.webp.large_image_url },
       trailer: { url: show.trailer.url, embedUrl : show.trailer.embed_url },
