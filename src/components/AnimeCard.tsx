@@ -14,7 +14,6 @@ const AnimeCard = ({ anime }: { anime: Anime }) => {
                 alt={anime.title}
                 height={200}
                 width={270}
-                priority
                 className="rounded-xl hover:scale-105 transition"
               ></Image>
               <h1 className='text-lg w-5/6 hover:underline underline-offset-2 decoration-2 cursor-pointer transition mb-1' title={anime.title_english}>
