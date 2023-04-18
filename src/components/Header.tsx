@@ -10,41 +10,42 @@ const Header = ({ season, year }: { season: string; year: number }) => {
     console.log(session, status);
   }
 
+  const heading = (season + ' ' + year).toUpperCase();
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const heading = season.toUpperCase() + ' ' + year.toString().toUpperCase();
 
-  const mouseEventHandler = (event: MouseEvent<HTMLHeadElement>) => {
-    let iteration = 0;
-    
-    const interval = setInterval(() => {
-      const target = event.target as HTMLElement;
-      target.innerText = target.innerText
-        .split('')
-        .map((letter, index) => {
-          if (index === 6) {
-            return " ";
-          }
-          if (index < iteration) {
-            return heading[index];
-          }
-          if (index >= 7) {
-            return Math.floor(Math.random() * 10)
-          }
-          return letters[Math.floor(Math.random() * 26)];
-        })
-        .join('');
+  const mouseEventHandler =
+    (text: string) => (event: MouseEvent<HTMLHeadElement>) => {
+      let iteration = 0;
+
+      const interval = setInterval(() => {
+        const target = event.target as HTMLElement;
+        target.innerText = target.innerText
+          .split('')
+          .map((letter, index) => {
+            if (index === text.indexOf(' ')) {
+              return ' ';
+            }
+            if (index < iteration) {
+              return text[index];
+            }
+            if (/\d/.test(text) && index > text.indexOf(' ')) {
+              return Math.floor(Math.random() * 10);
+            }
+            return letters[Math.floor(Math.random() * 26)];
+          })
+          .join('');
         console.log(target.innerText);
-      if (iteration >= heading.length) clearInterval(interval);
+        if (iteration >= text.length) clearInterval(interval);
 
-      iteration += 1 / 3;
-    }, 30);
-  };
+        iteration += 1 / 3;
+      }, 30);
+    };
 
   return (
-    <header className="flex justify-between items-center h-16 p-3 bg-zinc-800">
+    <header className="flex justify-between items-center h-16 p-3 text-xl bg-zinc-800 fixed top-0 left-0 right-0 z-10">
       <h1
-        className="capitalize cursor-pointer text-xl mx-auto hover:bg-white hover:text-black p-1 rounded-lg"
-        onMouseOver={mouseEventHandler}
+        className="capitalize cursor-pointer hover:bg-white hover:text-black px-2 py-1 rounded-lg"
+        onMouseOver={mouseEventHandler(heading)}
       >
         {heading}
       </h1>
@@ -58,9 +59,10 @@ const Header = ({ season, year }: { season: string; year: number }) => {
           onClick={() => signOut()}
         ></Image>
       )}
+
       {status === 'unauthenticated' && (
         <button
-          className="bg-zinc-900 p-2 rounded-lg text-md"
+          className="bg-zinc-900 py-1 px-2 rounded-lg text-md text-lg"
           onClick={() => signIn('discord')}
         >
           Sign In

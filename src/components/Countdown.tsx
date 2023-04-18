@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { CountdownProps } from '../lib/types';
 
 const Countdown = ({
   broadcast,
@@ -23,7 +22,12 @@ const Countdown = ({
     'Saturdays',
   ].indexOf(broadcast.day);
 
-  const getCountdown = (dayIndex: number, time: string): CountdownProps => {
+  const getCountdown = (dayIndex: number, time: string): {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  } => {
     const now = jstDate();
     const nextDate = nextDay(dayIndex);
     nextDate.setHours(Number(time.slice(0, 2)), Number(time.slice(3)), 0);

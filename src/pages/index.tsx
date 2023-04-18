@@ -1,11 +1,10 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Search from '~/components/Search';
 import Header from '~/components/Header';
 import AnimeCard from '~/components/AnimeCard';
 import getAnime from '~/lib/anime';
 import { Anime } from '~/lib/types';
-
-import { useState } from 'react';
 
 const Home = ({ animeList }: { animeList: Anime[] }) => {
   const [q, setQ] = useState<string>('');
@@ -38,7 +37,8 @@ const Home = ({ animeList }: { animeList: Anime[] }) => {
         <Header season={animeList[0].season} year={animeList[0].year} />
 
         <Search q={q} setQ={setQ} />
-        <article className="grid grid-cols-article gap-6 mx-24 justify-center">
+
+        <article className="grid grid-cols-article gap-6 mx-24 justify-center z-0">
           {q &&
             search().map((anime) => {
               return <AnimeCard anime={anime} key={anime.mal_id} />;
