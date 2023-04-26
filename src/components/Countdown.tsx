@@ -63,16 +63,16 @@ const Countdown = ({
 
   return (
     <ul className="flex justify-between w-5/6 text-white">
-      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
+      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 ease-out transition">
         {countDown.days}d
       </li>
-      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
+      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 ease-out transition">
         {countDown.hours}h
       </li>
-      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
+      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 ease-out transition">
         {countDown.minutes}m
       </li>
-      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 transition">
+      <li className="bg-zinc-900 h-[40px] w-[50px] rounded-lg flex justify-center items-center hover:scale-110 ease-out transition">
         {countDown.seconds}s
       </li>
     </ul>

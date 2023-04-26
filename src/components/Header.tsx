@@ -6,15 +6,11 @@ import { signIn, signOut } from 'next-auth/react';
 const Header = ({ season, year }: { season: string; year: number }) => {
   const { data: session, status } = useSession();
 
-  if (status === 'authenticated') {
-    console.log(session, status);
-  }
-
   const heading = (season + ' ' + year).toUpperCase();
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   const mouseEventHandler =
-    (text: string) => (event: MouseEvent<HTMLHeadElement>) => {
+    (text: string) => (event: MouseEvent<HTMLHeadingElement>) => {
       let iteration = 0;
 
       const interval = setInterval(() => {
@@ -34,7 +30,6 @@ const Header = ({ season, year }: { season: string; year: number }) => {
             return letters[Math.floor(Math.random() * 26)];
           })
           .join('');
-        console.log(target.innerText);
         if (iteration >= text.length) clearInterval(interval);
 
         iteration += 1 / 3;
@@ -42,7 +37,7 @@ const Header = ({ season, year }: { season: string; year: number }) => {
     };
 
   return (
-    <header className="flex justify-between items-center h-16 p-3 text-xl bg-zinc-800 fixed top-0 left-0 right-0 z-10">
+    <header className="bg-zinc-800 flex justify-between items-center h-16 p-3 text-xl fixed top-0 left-0 right-0 z-10">
       <h1
         className="capitalize cursor-pointer hover:bg-white hover:text-black px-2 py-1 rounded-lg"
         onMouseOver={mouseEventHandler(heading)}
@@ -62,7 +57,7 @@ const Header = ({ season, year }: { season: string; year: number }) => {
 
       {status === 'unauthenticated' && (
         <button
-          className="bg-zinc-900 py-1 px-2 rounded-lg text-md text-lg"
+          className="bg-zinc-900 px-3 py-1 rounded-lg"
           onClick={() => signIn('discord')}
         >
           Sign In
